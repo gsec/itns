@@ -1,4 +1,5 @@
 # own things to exclude
+that_mysterious_testfile
 .ropeproject/
 
 
