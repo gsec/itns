@@ -1,6 +1,8 @@
 # own things to exclude
 that_mysterious_testfile
+*.json
 .ropeproject/
+tests/database/*
 
 
 # Byte-compiled / optimized / DLL files
