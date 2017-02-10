@@ -3,6 +3,8 @@ that_mysterious_testfile
 *.json
 .ropeproject/
 tests/database/*
+Makefile
+_static/
 
 
 # Byte-compiled / optimized / DLL files

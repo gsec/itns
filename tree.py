@@ -20,10 +20,11 @@ def tree_map():
     root_obj = api.files_stat('/')
     root_obj['Name'] = '/'
     root_obj['content'] = walker(root_obj['Hash'])
-    root_obj['Type'] = 'Directory'
+    root_obj['Type'] = 'Root'
 
     return root_obj
 
 
 if __name__ == '__main__':
-    print(tree_map())
+    import pprint
+    pprint.PrettyPrinter().pprint(tree_map())

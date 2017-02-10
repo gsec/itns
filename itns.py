@@ -1,11 +1,15 @@
-# import subprocess
-from ruamel import yaml
 import logging
-from tree import tree_map
 import argparse
+import pprint
+from tree import tree_map
+from datadiff import diff
+from ruamel import yaml
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-DEFAULT_DIR = "database/testdb.yaml"
+
+DEFAULT_DIR = "tests/database/testdb.yaml"
+printer = pprint.PrettyPrinter(indent=1, width=90, compact=True)
 
 
 def io_write(fname, dct):
@@ -13,9 +17,12 @@ def io_write(fname, dct):
 
     Uses ruamel and the not-default flow style for consistency.
     """
-    with open(fname, 'w+') as handler:
-        yaml.dump(dct, handler, default_flow_style=False)
-    logger.info('Parameter file written to {}'.format(fname))
+    try:
+        with open(fname, 'x') as handler:
+            yaml.dump(dct, handler, default_flow_style=False)
+        logger.info('Database written to {}'.format(fname))
+    except FileExistsError as e:
+        print(e)
 
 
 def io_read(fname):
@@ -27,6 +34,10 @@ def io_read(fname):
 
 
 def main():
+    """ Read, write or check sync status.
+
+    Reads/writes from/to yaml files or compares to current status.
+    """
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-s', nargs='?', const=DEFAULT_DIR, default=None)
@@ -36,22 +47,25 @@ def main():
     group.add_argument('-w', nargs='?', const=DEFAULT_DIR, default=None)
 
     args = parser.parse_args()
-    print(args)
 
     if args.w:
         io_write(args.w, tree_map())
-        print("Written file, output as follows:\n")
-        print(io_read(args.w))
 
     if args.r:
         if args.r == '__current__':
-            print(tree_map())
+            printer.pprint(tree_map())
         else:
-            print(io_read(args.r))
+            printer.pprint(io_read(args.r))
 
     if args.s:
-        sync_state = io_read(args.s) == tree_map()
-        print("SYNC: ", sync_state)
+        logger.info("\nReading from: {}".format(args.s))
+        filelst, currlst = io_read(args.s), tree_map()
+        sync_state = filelst == currlst
+        print("\n::  ==SYNC==  ::  [{}] ".format(sync_state))
+
+        if not sync_state:
+            print("\na:Stored:---  <<[DIFFS]>>  b:Etheral:+++")
+            print(diff(filelst, currlst, context=0, depth=15))
 
 
 if __name__ == "__main__":
