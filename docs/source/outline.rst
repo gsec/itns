@@ -46,7 +46,7 @@ corresponding hashes. When looking for a file, one would query the database to t
 retrieve the file from the network. Every node (here as individual network participant)
 can have his own curated list of data blobs he wants to store and access.
 
-.. image:: _static/ipns_example.svg
+.. image:: images/ipns_example.svg
 
 One populated name space
 ------------------------
