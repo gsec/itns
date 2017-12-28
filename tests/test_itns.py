@@ -9,7 +9,8 @@ import ipfsapi
 
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.DEBUG)
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 TEST_DB = "tests/test_db.temp.json"
 

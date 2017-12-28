@@ -1,0 +1,1 @@
+/home/gsec/.itns/settings.py
