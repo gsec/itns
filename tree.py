@@ -1,6 +1,5 @@
 import ipfsapi
 
-
 api = ipfsapi.connect(host='localhost', port=5001)
 
 

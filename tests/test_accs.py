@@ -3,11 +3,13 @@
 # vim:ts=4:sw=4:sts=4:expandtab
 
 import sys
+
 sys.path.append("/repos/global/itns")
+
+from autocrypt import account
 
 import accs
 from settings import TEST_PATH
-from autocrypt import account
 
 
 def testrun():

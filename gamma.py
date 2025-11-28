@@ -1,6 +1,6 @@
-from random import getrandbits, randint, choice
 from hashlib import sha256
 from math import log2
+from random import choice, getrandbits, randint
 
 
 def hashme():

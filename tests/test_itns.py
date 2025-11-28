@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # Let us build an api! -------
 # we already have an api...
-import os
-import sys
 import json
 import logging
+import os
+import sys
+
 import ipfsapi
 
 logger = logging.getLogger(__file__)

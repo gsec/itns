@@ -1,9 +1,11 @@
-import logging
 import argparse
+import logging
 import pprint
-from tree import tree_map
+
 from datadiff import diff
 from ruamel import yaml
+
+from tree import tree_map
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
