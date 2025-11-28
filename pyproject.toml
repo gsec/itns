@@ -1,0 +1,12 @@
+[project]
+name = "itns"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cryptography>=46.0.3",
+    "isort>=7.0.0",
+    "pytest>=9.0.1",
+    "ruff>=0.14.6",
+]
